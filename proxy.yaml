@@ -1,0 +1,57 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: cloudsql-proxy
+  labels:
+    app: cloudsql-proxy
+spec:
+  template:
+    metadata:
+      labels:
+        app: cloudsql-proxy
+    spec:
+      containers:
+        - name: cloudsql-proxy
+          image: gcr.io/cloudsql-docker/gce-proxy:1.11
+          ports:
+          - containerPort: 5432
+            protocol: TCP
+          command: ["/cloud_sql_proxy",
+                    "-instances=ai-dev-216405:asia-east1:ai-dev-db=tcp:0.0.0.0:5432",
+                    "-credential_file=/secrets/cloudsql/credentials.json"]
+          # [START cloudsql_security_context]
+          securityContext:
+            runAsUser: 2  # non-root user
+            allowPrivilegeEscalation: false
+          # [END cloudsql_security_context]
+          volumeMounts:
+            - name: cloudsql-instance-credentials
+              mountPath: /secrets/cloudsql
+              readOnly: true
+        # [END proxy_container]
+      # [START volumes]
+      volumes:
+        - name: cloudsql-instance-credentials
+          secret:
+            secretName: cloudsql-instance-credentials
+      # [END volumes]
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: cloudsql-proxy-srv
+  annotations:
+    cloud.google.com/load-balancer-type: "Internal"
+spec:
+  ports:
+    # Accept traffic sent to port 8080
+    - port: 5432
+      targetPort: 5432
+      protocol: TCP
+  selector:
+    # Loadbalance traffic across Pods matching
+    # this label selector
+    app: cloudsql-proxy
+  type: LoadBalancer
