@@ -1,0 +1,42 @@
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: my-nginx
+spec:  
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: my-nginx
+    spec:
+      containers:
+      - name: my-nginx
+        image: nginx
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - mountPath: /etc/nginx/conf.d
+          name: nginx-config
+      volumes:
+      - name: nginx-config
+        configMap:
+          name: nginx-config    
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-nginx
+  annotations:
+    cloud.google.com/load-balancer-type: "Internal"
+spec:    
+  ports:
+      # Accept traffic sent to port 8080
+      - port: 80
+        targetPort: 80
+  selector:
+      # Loadbalance traffic across Pods matching
+      # this label selector
+      run: my-nginx
+  type: LoadBalancer
