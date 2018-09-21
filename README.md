@@ -21,4 +21,5 @@ kubectl exec my-nginx-585fbfd5f4-fpdb4 -i -t -- bash
       proxy_pass http://my-web:8080;
     }
   }
+	
   
