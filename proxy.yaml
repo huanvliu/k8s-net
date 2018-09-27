@@ -17,7 +17,7 @@ spec:
           - containerPort: 5432
             protocol: TCP
           command: ["/cloud_sql_proxy",
-                    "-instances=ai-dev-216405:asia-east1:ai-dev-db=tcp:0.0.0.0:5432",
+                    "-instances=[instances-name]=tcp:0.0.0.0:5432",
                     "-credential_file=/secrets/cloudsql/credentials.json"]
           # [START cloudsql_security_context]
           securityContext:
