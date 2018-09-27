@@ -30,3 +30,7 @@ kubectl create secret docker-registry regcred --docker-server=<your-registry-ser
 
 ## 集群上测试postgresql
 kubectl run -l app=other --image=jbergknoff/postgresql-client --restart=Never --rm -i -t test-pg-sql-1 postgresql://test:test@cloudsql-proxy-test-3:5432
+
+## 集群上测试mysql
+kubectl run -i --rm --tty mysql-client --image=mysql/mysql-server --restart=Never --command -- /bin/sh
+mysql -h(host) -P(port) -u(user) -p(pwd)
