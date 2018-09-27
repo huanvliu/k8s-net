@@ -24,3 +24,6 @@ kubectl exec my-nginx-585fbfd5f4-fpdb4 -i -t -- bash
 	
 ##  kompose
 使用kompose可以将swarm的docker compose转为k8s的yaml
+
+## 访问docker私有仓库，需要经历regcred
+kubectl create secret docker-registry regcred --docker-server=<your-registry-server> --docker-username=<your-name> --docker-password=<your-pword> --docker-email=<your-email>
