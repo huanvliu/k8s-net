@@ -27,3 +27,6 @@ kubectl exec my-nginx-585fbfd5f4-fpdb4 -i -t -- bash
 
 ## 访问docker私有仓库，需要经历regcred
 kubectl create secret docker-registry regcred --docker-server=<your-registry-server> --docker-username=<your-name> --docker-password=<your-pword> --docker-email=<your-email>
+
+## 集群上测试postgresql
+kubectl run -l app=other --image=jbergknoff/postgresql-client --restart=Never --rm -i -t test-pg-sql-1 postgresql://test:test@cloudsql-proxy-test-3:5432
