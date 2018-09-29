@@ -34,3 +34,6 @@ kubectl run -l app=other --image=jbergknoff/postgresql-client --restart=Never --
 ## 集群上测试mysql
 kubectl run -i --rm --tty mysql-client --image=mysql/mysql-server --restart=Never --command -- /bin/sh
 mysql -h(host) -P(port) -u(user) -p(pwd)
+
+## 集群中使用ubantu
+ubectl run -l app=other --image=zhaoyao91/ubuntool --restart=Never --rm -i -t test-ubuntool-1
