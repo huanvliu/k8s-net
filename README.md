@@ -36,4 +36,4 @@ kubectl run -i --rm --tty mysql-client --image=mysql/mysql-server --restart=Neve
 mysql -h(host) -P(port) -u(user) -p(pwd)
 
 ## 集群中使用ubantu
-ubectl run -l app=other --image=zhaoyao91/ubuntool --restart=Never --rm -i -t test-ubuntool-1
+kubectl run -l app=other --image=zhaoyao91/ubuntool --restart=Never --rm -i -t test-ubuntool-1
