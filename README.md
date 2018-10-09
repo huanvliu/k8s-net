@@ -37,3 +37,6 @@ mysql -h(host) -P(port) -u(user) -p(pwd)
 
 ## 集群中使用ubantu
 kubectl run -l app=other --image=zhaoyao91/ubuntool --restart=Never --rm -i -t test-ubuntool-1
+
+## k8s中使用代理服务ambassador
+ambassador代理服务，在annotaton中加入匹配规则，更灵活，更方便，修改的是yaml文件，直接使用apply更新
