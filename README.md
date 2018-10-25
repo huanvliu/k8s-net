@@ -44,3 +44,5 @@ mysql -h(host) -P(port) -u(user) -p(pwd)
 #### 接口测试网页postb.in
 - postb.in 可以接受请求，查看请求体等
 
+### nats测试
+kubectl run -l app=other --image=zhaoyao91/nats-repl2 --env="METHOD_NATS_URL=nats://nats-srv:4222" --env="EVENT_NATS_URL=nats://nats-srv:4222"  --restart=Never --rm -i -t \    test-nats-1
