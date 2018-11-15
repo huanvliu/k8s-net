@@ -49,3 +49,6 @@ kubectl run -l app=other --image=zhaoyao91/nats-repl2 --env="METHOD_NATS_URL=nat
 
 ### sock5 rfc
 https://www.ietf.org/rfc/rfc1928.txt
+
+### crontab format
+http://www.nncron.ru/help/EN/working/cron-format.htm
