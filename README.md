@@ -46,3 +46,6 @@ mysql -h(host) -P(port) -u(user) -p(pwd)
 
 ### nats测试
 kubectl run -l app=other --image=zhaoyao91/nats-repl2 --env="METHOD_NATS_URL=nats://nats-srv:4222" --env="EVENT_NATS_URL=nats://nats-srv:4222"  --restart=Never --rm -i -t \    test-nats-1
+
+### sock5 rfc
+https://www.ietf.org/rfc/rfc1928.txt
