@@ -1,0 +1,23 @@
+My os is “ubuntu 18.04”，docker version is 19.03.
+below is details.
+first: sudo usermod -aG docker $USER && newgrp docker(赋予docker权限到当前用户，minikube不能使用root权限)
+second: minikube start --driver=docker --image-mirror-country='cn' --image-repository='registry.cn-hangzhou.aliyuncs.com/google_containers'（国内image）
+
+minikube v1.17.0 on Ubuntu 18.04 (amd64)
+Using the docker driver based on existing profile
+Starting control plane node minikube in cluster minikube
+Pulling base image ...
+docker "minikube" container is missing, will recreate.
+Creating docker container (CPUs=2, Memory=2200MB) ...
+Preparing Kubernetes v1.20.2 on Docker 20.10.2 ...
+Generating certificates and keys ...
+Booting up control plane ...
+Configuring RBAC rules ...
+Verifying Kubernetes components...
+Enabled addons: storage-provisioner, default-storageclass
+kubectl not found. If you need it, try: 'minikube kubectl -- get pods -A'
+Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
+test@lj:~$ minikube version
+minikube version: v1.17.0
+then: minikube kubectl -- get pods -A （安装kubectl）
+然后就可以开始使用了
